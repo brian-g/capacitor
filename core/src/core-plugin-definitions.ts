@@ -1032,6 +1032,24 @@ export interface LocalNotification {
   attachments?: LocalNotificationAttachment[];
   actionTypeId?: string;
   extra?: any;
+  /**
+   * iOS only: set the thread identifier for notification grouping
+   */
+  threadIdentifier?: string;
+  /**
+   * iOS 12+ only: set the summary argument for notification grouping
+   */
+  summaryArgument?: string;
+  /**
+   * Android only: set the group identifier for notification grouping, like
+   * threadIdentifier on iOS.
+   */
+  group?: string;
+  /**
+   * Android only: designate this notification as the summary for a group
+   * (should be used with the `group` property).
+   */
+  groupSummary?: boolean;
 }
 
 export interface LocalNotificationSchedule {
@@ -1429,6 +1447,16 @@ export interface PushNotification {
   data: any;
   click_action?: string;
   link?: string;
+  /**
+   * Android only: set the group identifier for notification grouping, like
+   * threadIdentifier on iOS.
+   */
+  group?: string;
+  /**
+   * Android only: designate this notification as the summary for a group
+   * (should be used with the `group` property).
+   */
+  groupSummary?: boolean;
 }
 
 export interface PushNotificationActionPerformed {
@@ -1449,6 +1477,7 @@ export interface PushNotificationChannel {
   id: string;
   name: string;
   description: string;
+  sound: string;
   importance: 1 | 2 | 3 | 4 | 5;
   visibility?: -1 | 0 | 1 ;
 }
@@ -1620,6 +1649,7 @@ export interface ToastPlugin extends Plugin {
 export interface ToastShowOptions {
   text: string;
   duration?: 'short' | 'long';
+  position?: 'top' | 'center' | 'bottom';
 }
 
 export interface WebViewPlugin extends Plugin {
